@@ -3,12 +3,11 @@ import { useBasket } from '../../context/BasketContext';
 import Stepper from '../Stepper/Stepper';
 import emptyCart from '../../assets/cart_empty.svg';
 
-export default function CartPopup({ opened, onClose }: { opened: boolean; onClose: () => void }) {
+export default function CartPopup({ opened }: { opened: boolean }) {
   const { cart, updateQuantity, totalPrice } = useBasket();
 
   if (!opened) return null;
 
-  // Пустая корзина
   if (cart.length === 0) {
     return (
       <Flex
@@ -33,7 +32,6 @@ export default function CartPopup({ opened, onClose }: { opened: boolean; onClos
     );
   }
 
-  // Корзина с товарами
   return (
     <Box
       bg="white"
@@ -56,9 +54,7 @@ export default function CartPopup({ opened, onClose }: { opened: boolean; onClos
               <Flex direction="column">
                 <Group gap={12} justify="space-between">
                   <Text fw={600} size="md">{item.name.split(' - ')[0]}</Text>
-                  <Text c="#868E96" size="sm">
-                    {item.name.includes('-') ? item.name.split('-')[1] : ''}
-                  </Text>
+                  <Text c="#868E96" size="sm">{item.name.includes('-') ? item.name.split('-')[1] : ''}</Text>
                 </Group>
                 <Text fw={600} size="xl">$ {item.price * item.quantity}</Text>
               </Flex>
