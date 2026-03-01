@@ -1,5 +1,5 @@
 import ky from 'ky';
-import type { Product } from '../types/Product';
+import type { Product } from '../types/product';
 import { useEffect, useState } from 'react';
 
 export default function useProducts() {

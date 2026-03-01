@@ -21,8 +21,13 @@ export default function Stepper({ value, onChange, min = 0, max = 99 }: StepperP
   };
 
   return (
-    <Flex align="center" gap={4}>
+    <Flex 
+      align="center" 
+      gap={4}
+      data-testid="stepper"  
+    >
       <ActionIcon
+        data-testid="stepper-image-minus"  
         onClick={handleDecrement}
         disabled={value <= min}
         bg="#DEE2E6"
@@ -33,10 +38,16 @@ export default function Stepper({ value, onChange, min = 0, max = 99 }: StepperP
       </ActionIcon>
       
       <Flex w={30} justify="center" align="center">
-        <Text fw={600}>{value}</Text>
+        <Text 
+          data-testid="stepper-value" 
+          fw={600}
+        >
+          {value}
+        </Text>
       </Flex>
       
       <ActionIcon
+        data-testid="stepper-image-plus"
         onClick={handleIncrement}
         disabled={value >= max}
         bg="#DEE2E6"

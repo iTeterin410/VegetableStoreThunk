@@ -1,11 +1,11 @@
 import { Box, Text, Button, Flex, Badge, Group, Center } from '@mantine/core';
-import { useBasket } from '../../context/BasketContext';
+import { useAppSelector } from '../../store/hooks/redux'; 
 import { useState } from 'react';
 import CartPopup from '../CartPopup/CartPopup';
 import basketIcon from '../../assets/basket2.svg';
 
 export default function Header() {
-  const { totalItems } = useBasket();
+  const { totalQuantity } = useAppSelector(state => state.cart);
   const [opened, setOpened] = useState(false);
 
   return (
@@ -28,16 +28,16 @@ export default function Header() {
           <Badge bg="#54B46A" c="white" size="lg">SHOP</Badge>
         </Group>
 
-        <Box style={{ position: 'relative' }}>  {/* ← добавить relative */}
+        <Box style={{ position: 'relative' }}>
           <Button
             onClick={() => setOpened(o => !o)}
             color="#54B46A"
             w={144}
             h={44}
             leftSection={
-              totalItems > 0 ? (
+              totalQuantity > 0 ? (
                 <Flex w={20} h={20} bg="white" style={{ borderRadius: '50%' }} align="center" justify="center">
-                  <Text c="black" fw={600} size="xs">{totalItems}</Text>
+                  <Text c="black" fw={600} size="xs">{totalQuantity}</Text>
                 </Flex>
               ) : null
             }
@@ -46,7 +46,7 @@ export default function Header() {
             <Text fw={600}>Cart</Text>
           </Button>
           
-          <CartPopup opened={opened} onClose={() => setOpened(false)} />  {/* ← ВНУТРИ Box! */}
+          <CartPopup opened={opened} onClose={() => setOpened(false)} />
         </Box>
       </Flex>
     </Center>

@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { Card, Image, Text, Button, Flex } from '@mantine/core';
+import { useAppDispatch } from '../../store/hooks/redux';
+import { addToCart } from '../../store/slices/cartSlice';
 import Stepper from '../Stepper/Stepper';
-import { useBasket } from '../../context/BasketContext';
-import type { Product } from '../../types/Product';
+import type { Product } from '../../types/product';
 
-export default function ProductCard({ product }: { product: Product }) {
+type Props = {
+  product: Product;
+};
+
+export default function ProductCard({ product }: Props) {
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useBasket();
+  const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    setQuantity(1);
+    dispatch(addToCart({ product, quantity }));
+    setQuantity(1); // сбрасываем счётчик после добавления
   };
 
   return (

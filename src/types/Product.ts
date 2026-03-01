@@ -6,3 +6,6 @@ export type Product = {
   category?: string;
 }
 
+export type CartItem = Product & {
+  quantity: number;
+};
