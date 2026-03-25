@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Image, Group } from '@mantine/core';
+import { Flex, Text, Image, Group } from '@mantine/core';
 import { useAppSelector, useAppDispatch } from '../../store/hooks/redux';
 import { updateQuantity } from '../../store/slices/cartSlice';
 import Stepper from '../Stepper/Stepper';
