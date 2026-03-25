@@ -1,0 +1,56 @@
+.popup {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 444px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  z-index: 101;
+}
+
+.emptyPopup {
+  width: 301px;
+  height: 227px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+  cursor: pointer;
+}
+
+.item {
+  margin-bottom: 16px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.divider {
+  width: calc(100% - 48px);
+  margin: 16px auto;
+  border-top: 1px solid #dee2e6;
+}
+
+.total {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 20px;
+  color: #27ae60;
+}

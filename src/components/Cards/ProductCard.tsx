@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Card, Image, Text, Button, Flex } from '@mantine/core';
+import { Card, Image, Text, Flex } from '@mantine/core';
 import { useAppDispatch } from '../../store/hooks/redux';
 import { addToCart } from '../../store/slices/cartSlice';
 import Stepper from '../Stepper/Stepper';
 import type { Product } from '../../types/product';
+import styles from './ProductCard.module.css';
 
 type Props = {
   product: Product;
@@ -15,34 +16,36 @@ export default function ProductCard({ product }: Props) {
 
   const handleAddToCart = () => {
     dispatch(addToCart({ product, quantity }));
-    setQuantity(1); // сбрасываем счётчик после добавления
+    setQuantity(1);
   };
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card className={styles.card} padding="lg" radius="md">
       <Card.Section>
         <Image
           src={product.image}
           height={200}
           alt={product.name}
           fit="cover"
+          className={styles.image}
         />
       </Card.Section>
 
-      <Text fw={600} size="lg" mt="md">
+      <Text className={styles.title}>
         {product.name}
       </Text>
       
-      <Text size="xl" fw={700} c="green" mt="xs">
+      <Text className={styles.price}>
         {product.price} ₽
       </Text>
 
       <Flex justify="space-between" align="center" mt="md">
         <Stepper value={quantity} onChange={setQuantity} />
-        <Button color="green" size="sm" onClick={handleAddToCart}>
-          Add to cart
-        </Button>
       </Flex>
+
+      <button className={styles.addButton} onClick={handleAddToCart}>
+        Add to cart
+      </button>
     </Card>
   );
 }
